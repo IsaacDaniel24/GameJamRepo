@@ -5,8 +5,9 @@ app = Ursina(title=" After Hours", size=(1280, 720))
 piso = Entity(
     model="plane",               
     scale=(20, 1, 20),                
-    texture=Texture("assets/textures/floor.png", filtering=None), 
-    texture_scale=(10, 10),          
+    texture=Texture("images/textures/floor.png", filtering=None), 
+    texture_scale=(10, 10), 
+    unlit=True,         
 )
 
 caja = Entity(model="cube", color=color.red, position=(0, 0.5, 5))
