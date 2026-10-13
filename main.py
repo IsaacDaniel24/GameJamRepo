@@ -1,4 +1,18 @@
 from ursina import *
+from ursina.prefabs.first_person_controller import FirstPersonController
+
+class Player(Entity):
+    def __init__(self, **kwargs):
+        self.controller = FirstPersonController(**kwargs)
+        super().__init__(parent = self.controller)
+
+        self.gun = Entity(parent=self.controller.camera_pivot,
+                          scale = 0.1,
+                          position = Vec3(0.7,-1,1.5),
+                          rotation = Vec3(0,170,0),
+                          texture = "images/PIST1.png",
+                          visible = True)
+        
 
 app = Ursina(title=" After Hours", size=(1280, 720))
 
@@ -7,26 +21,14 @@ piso = Entity(
     scale=(20, 1, 20),                
     texture=load_texture("images/textures/floor.png"), 
     texture_scale=(10, 10), 
-    unlit=True,         
+    unlit=True, 
+    collider="mesh",        
 )
 
 caja = Entity(model="cube", color=color.red, position=(0, 0.5, 5))
 
-jugador = Entity(position=(0, 0, 0))
-camera.parent = jugador               
-camera.position = (0, 1.5, 0)         
 
-
-def update():                        
-    velocidad = 4 * time.dt           
-    if held_keys["w"]:
-        jugador.z += velocidad
-    if held_keys["s"]:
-        jugador.z -= velocidad
-    if held_keys["d"]:
-        jugador.x += velocidad
-    if held_keys["a"]:
-        jugador.x -= velocidad
+player = Player(position=(0, 1, 0))
 
 
 app.run()
