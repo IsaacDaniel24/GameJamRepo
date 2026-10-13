@@ -5,7 +5,7 @@ app = Ursina(title=" After Hours", size=(1280, 720))
 piso = Entity(
     model="plane",               
     scale=(20, 1, 20),                
-    texture=Texture("images/textures/floor.png", filtering=None), 
+    texture=load_texture("images/textures/floor.png"), 
     texture_scale=(10, 10), 
     unlit=True,         
 )
